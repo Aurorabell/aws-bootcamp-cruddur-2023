@@ -12,7 +12,7 @@ tasks:
   - name: react-js
     command:
       cd frontend-react-js
-      npm -i
+      npm -install
 
   - name: postgres
     init: |
@@ -21,14 +21,10 @@ tasks:
       sudo apt update
       sudo apt install -y postgresql-client-13 libpq-dev
 
-
-
-
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
     - cweijan.vscode-postgresql-client2
-
 
 ports:
   - name: frontend
