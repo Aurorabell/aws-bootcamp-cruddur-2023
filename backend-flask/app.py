@@ -57,6 +57,9 @@ provider = TracerProvider()
 processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
 
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
+
 app = Flask(__name__)
 
 cognito_jwt_token = CognitoJwtToken(
@@ -73,10 +76,7 @@ xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
 simple_processor = SimpleSpanProcessor(ConsoleSpanExporter())
 provider.add_span_processor(simple_processor)
 
-trace.set_tracer_provider(provider)
-tracer = trace.get_tracer(__name__)
-
-app = Flask(__name__)
+#app = Flask(__name__)
 
 #AWS X-ray
 XRayMiddleware(app, xray_recorder)
