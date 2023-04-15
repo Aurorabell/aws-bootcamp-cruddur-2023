@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 #To create spans, you need to get a Tracer
 from opentelemetry import trace
-from lib.db import pool #query_wrap_object, query_wrap_array
+from lib.db import db #query_wrap_object, query_wrap_array
 
 #tracer = trace.get_tracer("home.activities")
 
@@ -27,5 +27,5 @@ class HomeActivities:
         #return json[0]
          #return results
       sql = db.template('activities','home')
-    results = db.query_array_json(sql)
-    return results
+      results = db.query_array_json(sql)
+      return results
